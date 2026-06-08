@@ -179,6 +179,10 @@
     grid-column: span 2;
   }
 
+  .featured-grid .card.wide {
+    grid-column: span 2;
+  }
+
   .card {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 16px; padding: 24px;
@@ -395,6 +399,7 @@
     .section { padding: 60px 16px; }
     .featured-grid { grid-template-columns: 1fr; }
     .featured-grid .card:first-child { grid-column: span 1; }
+    .featured-grid .card.wide { grid-column: span 1; }
     .about-grid { grid-template-columns: 1fr; }
     .cta-section { padding: 40px 24px; margin: 0 16px 60px; }
     .hero-stats { gap: 16px; }
@@ -467,87 +472,48 @@
   </div>
 
   <div class="featured-grid reveal">
-
-    <a class="card type-tool" href="https://designdigest.vercel.app" target="_blank">
+    <a class="card" href="https://designdigest.vercel.app" target="_blank">
       <div class="card-day">Day 62 · AI Tool · Standout</div>
       <div class="card-name lg">Designdigest</div>
-      <div class="card-desc">Live design inspiration feed pulling from 12 RSS sources, processed by Groq, categorised into Inspiration, Tools, Articles, and Jobs. Solves a real daily need — never search for design inspo manually again.</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="tag">Groq API</span>
-          <span class="tag">RSS</span>
-          <span class="tag">Live feed</span>
-        </div>
-        <div class="card-arrow">→</div>
-      </div>
+      <div class="card-desc">Live design inspiration feed pulling from 12 RSS sources, processed by Groq, categorised into Inspiration, Tools, Articles, and Jobs. Never shows empty — solves a real daily need.</div>
+      <div class="card-footer"><div class="card-tags"><span class="tag">Groq API</span><span class="tag">RSS</span><span class="tag">Live feed</span></div><div class="card-arrow">→</div></div>
     </a>
-
-    <a class="card type-multi" href="https://color-analyser.vercel.app" target="_blank">
+    <a class="card" href="https://color-analyser.vercel.app" target="_blank">
       <div class="card-day">Days 14–17 · Design System</div>
       <div class="card-name">Whyframe</div>
       <div class="card-desc">A design reasoning engine — not a generator. Four modules: Color Analyzer, Type Scale Builder, Spacing Auditor, Layout Reviewer.</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="tag">Groq API</span>
-          <span class="tag">4 modules</span>
-        </div>
-        <div class="card-arrow">→</div>
-      </div>
+      <div class="card-footer"><div class="card-tags"><span class="tag">Groq API</span><span class="tag">4 modules</span></div><div class="card-arrow">→</div></div>
     </a>
-
-    <a class="card type-tool" href="https://motionstudio.vercel.app" target="_blank">
+    <a class="card" href="https://motionstudio-five.vercel.app" target="_blank">
       <div class="card-day">Day 66 · Design Tool</div>
       <div class="card-name">Motionstudio</div>
       <div class="card-desc">CSS animation playground. Pick a UI element, dial in effect + easing + duration, watch it live, get AI reasoning on why it works.</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="tag">CSS keyframes</span>
-          <span class="tag">Groq AI</span>
-        </div>
-        <div class="card-arrow">→</div>
-      </div>
+      <div class="card-footer"><div class="card-tags"><span class="tag">CSS keyframes</span><span class="tag">Groq AI</span></div><div class="card-arrow">→</div></div>
     </a>
-
-    <a class="card type-multi" href="https://foliopath.vercel.app/" target="_blank">
+    <a class="card" href="https://foliopath.vercel.app/" target="_blank">
       <div class="card-day">Days 18–21 · Multi-stage App</div>
       <div class="card-name">Foliopath</div>
-      <div class="card-desc">Three-stage project lifecycle tool — Brief Generator, Decision Journal with voice-to-text, and Case Study Generator. Multi-project localStorage, image uploads.</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="tag">React + Vite</span>
-          <span class="tag">Voice</span>
-          <span class="tag">3 stages</span>
-        </div>
-        <div class="card-arrow">→</div>
-      </div>
+      <div class="card-desc">Three-stage project lifecycle tool — Brief Generator, Decision Journal with voice-to-text, and Case Study Generator with image uploads.</div>
+      <div class="card-footer"><div class="card-tags"><span class="tag">React + Vite</span><span class="tag">Voice</span><span class="tag">3 stages</span></div><div class="card-arrow">→</div></div>
     </a>
-
-    <a class="card type-tool" href="https://statboard-lyart.vercel.app" target="_blank">
+    <a class="card" href="https://statboard-lyart.vercel.app" target="_blank">
       <div class="card-day">Day 67 · Data Viz</div>
       <div class="card-name">Statboard</div>
-      <div class="card-desc">Metrics dashboard builder with realistic simulated data. Sparkline charts, live ticking numbers, goal progress, trend indicators. Export as HTML.</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="tag">SVG sparklines</span>
-          <span class="tag">Live mode</span>
-        </div>
-        <div class="card-arrow">→</div>
-      </div>
+      <div class="card-desc">Metrics dashboard builder with realistic simulated data. Sparkline charts, live ticking numbers, goal progress. Export as HTML.</div>
+      <div class="card-footer"><div class="card-tags"><span class="tag">SVG sparklines</span><span class="tag">Live mode</span></div><div class="card-arrow">→</div></div>
     </a>
-
-    <a class="card type-tool" href="https://typefeel.vercel.app" target="_blank">
+    <a class="card" href="https://typefeel.vercel.app" target="_blank">
       <div class="card-day">Day 64 · Design Tool</div>
       <div class="card-name">Typefeel</div>
-      <div class="card-desc">Interactive typography playground — manipulate font, size, weight, tracking, leading in real time. Hit Analyse for AI mood breakdown and pairing suggestions.</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="tag">Groq API</span>
-          <span class="tag">16 fonts</span>
-        </div>
-        <div class="card-arrow">→</div>
-      </div>
+      <div class="card-desc">Interactive typography playground — manipulate font, size, weight, tracking, leading in real time. AI mood breakdown and pairing suggestions.</div>
+      <div class="card-footer"><div class="card-tags"><span class="tag">Groq API</span><span class="tag">16 fonts</span></div><div class="card-arrow">→</div></div>
     </a>
-
+    <a class="card wide" href="https://casework.vercel.app" target="_blank">
+      <div class="card-day">Days 18–21 · Multi-stage App</div>
+      <div class="card-name">Casework</div>
+      <div class="card-desc">Real decisions. Real consequences. A design learning game where players tackle UX scenarios, build design reputation, and learn product thinking through the impact of their choices.</div>
+      <div class="card-footer"><div class="card-tags"><span class="tag">React + Vite</span><span class="tag">localStorage</span><span class="tag">3 stages</span></div><div class="card-arrow">→</div></div>
+    </a>
   </div>
 </section>
 
@@ -642,11 +608,11 @@
 // ── Project data (matched from tracker + Vercel) ──────────────────────────────
 const projects = [
   { day:1,  name:'Ship69 Hub',              type:'multi',   desc:'Shell of the hub site — nav, grid layout, empty project cards.',                                            url:'https://ship69-hub.vercel.app/' },
-  { day:2,  name:'Vibe Check Color Tool',   type:'tool',    desc:'Type a mood → AI generates a 6-color palette with mood description, season, and energy level.',             url:'https://vibe-palette.vercel.app' },
+  { day:2,  name:'Vibe Check Color Tool',   type:'tool',    desc:'Type a mood → AI generates a 6-color palette with mood description, season, and energy level.',             url:'https://vibe-palette-three.vercel.app/' },
   { day:3,  name:'Font Crime Detector',     type:'tool',    desc:'Upload a UI screenshot → AI files a typography crime report with severity scores and fixes.',                url:'https://font-roast.vercel.app' },
   { day:4,  name:'Type or Die',             type:'game',    desc:'Terminal-style typing arcade. Words fall from the top — type them before they hit the bottom.',              url:'https://type-or-die-arcade.vercel.app' },
   { day:5,  name:'Dodge the Meetings',      type:'game',    desc:'Developer dodge game. Avoid falling calendar invites, Slack pings, and Jira tickets.',                       url:'https://dodge-the-meetings.vercel.app' },
-  { day:6,  name:'Fake SaaS Generator',     type:'tool',    desc:'Type any ridiculous idea → AI generates a deadpan professional SaaS landing page you can download.',        url:'https://fake-saa-s-generator-1wcm.vercel.app' },
+  { day:6,  name:'Fake SaaS Generator',     type:'tool',    desc:'Type any ridiculous idea → AI generates a deadpan professional SaaS landing page you can download.',        url:'https://fake-saas-generator.vercel.app/' },
   { day:7,  name:'Dodge Wave',              type:'game',    desc:'Mobile dodge game. Drag to avoid waves of enemy projectiles falling in patterns.',                           url:'https://dodge-wave.vercel.app/' },
   { day:8,  name:'AskAnything',             type:'tool',    desc:'AI-powered answer engine for real life problems. Type any problem → structured actionable advice.',          url:'https://ask-anything-now.vercel.app/' },
   { day:9,  name:'Layer Audit',             type:'tool',    desc:'Figma plugin that scans layers for bad naming — default names, deep nesting — with issue + fix + severity.', url:'#' },
@@ -682,7 +648,7 @@ const projects = [
   { day:47, name:'Sero',                 type:'landing', desc:'Sleep tracking app landing. Deep navy + amber. Phone mockup with sleep score and heart rate chart.',           url:'https://sero-sleep-app.vercel.app/' },
   { day:48, name:'Colordump',            type:'design',  desc:'Paste any hex → full token system. 10-stop shade scale, 8 semantic tokens, CSS/Tailwind/Figma/SCSS export.',  url:'https://colordump.vercel.app/' },
   { day:50, name:'Folio',               type:'tool',    desc:'Portfolio presentation tool. Add projects, present full-screen with keyboard nav, progress bar, dot navigation.', url:'https://folio-portfolio-presenter.vercel.app' },
-  { day:51, name:'Mockframe',           type:'design',  desc:'Browser/phone mockup generator. Custom title, description, URL. Copy HTML output.',                            url:'https://mockframebeta.vercel.app' },
+  { day:51, name:'Mockframe',           type:'design',  desc:'Browser/phone mockup generator. Custom title, description, URL. Copy HTML output.',                            url:'https://mockframe-beta.vercel.app' },
   { day:54, name:'Vibespec',            type:'tool',    desc:'Describe a feeling, film, place → full design direction: palette, typefaces, spacing mood, creative brief.',   url:'https://vibespec-tan.vercel.app' },
   { day:55, name:'Specwriter',          type:'tool',    desc:'Describe a UI component → full handoff spec: typography, spacing, colour, interaction states, accessibility.', url:'https://specwriter-delta.vercel.app/' },
   { day:56, name:'Microcopy',           type:'tool',    desc:'Describe a UI moment → 3 variations of headline, subtext, and CTA across 10 moment types and 3 tones.',       url:'https://microcopy-opal.vercel.app/' },
