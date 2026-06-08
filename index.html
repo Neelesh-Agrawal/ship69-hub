@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ship69 — 69 Projects in 69 Days</title>
+<meta name="description" content="One project shipped every day for 69 days. Design tools, games, AI apps, landing pages — built by Neelesh Agrawal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --surface2: #f1f5f9;
+    --border: #e2e8f0;
+    --border-bright: #cbd5e1;
+    --accent: #2563eb;
+    --accent-dim: #dbeafe;
+    --accent-mid: #93c5fd;
+    --text: #0f172a;
+    --text-2: #475569;
+    --text-3: #94a3b8;
+    --mono: 'DM Mono', monospace;
+    --sans: 'Syne', sans-serif;
+    --green: #16a34a;
+    --green-dim: #dcfce7;
+    --pink: #be185d;
+    --pink-dim: #fce7f3;
+    --amber: #b45309;
+    --amber-dim: #fef9c3;
+    --purple: #6d28d9;
+    --purple-dim: #ede9fe;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); overflow-x: hidden; }
+
+  /* ── Nav ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 56px;
+    background: rgba(248,250,252,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo { font-family: var(--mono); font-size: 14px; color: var(--text); font-weight: 500; }
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links { display: flex; align-items: center; gap: 6px; }
+
+  .nav-link {
+    font-family: var(--mono); font-size: 11px; color: var(--text-2);
+    padding: 6px 12px; border-radius: 8px; cursor: pointer;
+    transition: all 0.15s; text-decoration: none; border: none; background: none;
+  }
+  .nav-link:hover { background: var(--surface2); color: var(--text); }
+
+  .nav-cta {
+    background: var(--accent); color: #fff;
+    border: none; border-radius: 8px; padding: 7px 16px;
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    cursor: pointer; transition: all 0.15s; text-decoration: none;
+  }
+  .nav-cta:hover { background: #1d4ed8; }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 100px 24px 80px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px; opacity: 0.5;
+  }
+
+  .hero-glow {
+    position: absolute; width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%, -55%); pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 700px; }
+
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase;
+    background: var(--accent-dim); border: 1px solid var(--accent-mid);
+    border-radius: 20px; padding: 5px 16px; display: inline-block;
+    margin-bottom: 28px; animation: up 0.6s ease both;
+  }
+
+  .hero-title {
+    font-size: clamp(52px, 10vw, 100px); font-weight: 800; line-height: 0.95;
+    letter-spacing: -0.04em; color: var(--text);
+    animation: up 0.6s 0.1s ease both;
+  }
+
+  .hero-title span { color: var(--accent); }
+
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 20px); color: var(--text-2); font-weight: 500;
+    margin-top: 20px; line-height: 1.5;
+    animation: up 0.6s 0.2s ease both;
+  }
+
+  .hero-meta {
+    font-family: var(--mono); font-size: 12px; color: var(--text-3);
+    margin-top: 10px; animation: up 0.6s 0.25s ease both;
+  }
+
+  .hero-buttons {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin-top: 36px; animation: up 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--accent); color: #fff; border: none; border-radius: 10px;
+    padding: 13px 28px; font-family: var(--mono); font-size: 12px; font-weight: 500;
+    cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: #1d4ed8; box-shadow: 0 4px 20px rgba(37,99,235,0.25); }
+
+  .btn-ghost {
+    background: var(--surface); color: var(--text-2);
+    border: 1px solid var(--border-bright); border-radius: 10px;
+    padding: 13px 24px; font-family: var(--mono); font-size: 12px;
+    cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Stats strip */
+  .hero-stats {
+    display: flex; align-items: center; justify-content: center; gap: 32px;
+    margin-top: 48px; padding-top: 32px;
+    border-top: 1px solid var(--border);
+    animation: up 0.6s 0.4s ease both;
+  }
+
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-family: var(--mono); font-size: 28px; font-weight: 500; color: var(--accent); }
+  .hero-stat-label { font-family: var(--mono); font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+
+  .hero-stat-sep { width: 1px; height: 40px; background: var(--border); }
+
+  /* ── Section ── */
+  .section { padding: 80px 32px; max-width: 1140px; margin: 0 auto; }
+  .divider { height: 1px; background: var(--border); max-width: 1140px; margin: 0 auto; }
+
+  .eyebrow {
+    font-family: var(--mono); font-size: 10px; font-weight: 500;
+    color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-size: clamp(26px, 3.5vw, 38px); font-weight: 800;
+    color: var(--text); margin-bottom: 36px; line-height: 1.1;
+  }
+
+  /* ── Featured ── */
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .featured-grid .card:first-child {
+    grid-column: span 2;
+  }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px;
+    display: flex; flex-direction: column; gap: 12px;
+    transition: all 0.2s; text-decoration: none; color: inherit;
+    position: relative; overflow: hidden;
+  }
+
+  .card:hover {
+    border-color: var(--accent); transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(37,99,235,0.08);
+  }
+
+  .card-day {
+    font-family: var(--mono); font-size: 9px; font-weight: 500;
+    color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase;
+    background: var(--accent-dim); border-radius: 6px; padding: 3px 8px;
+    width: fit-content;
+  }
+
+  .card-name { font-size: 20px; font-weight: 800; color: var(--text); }
+  .card-name.lg { font-size: 26px; }
+
+  .card-desc {
+    font-family: var(--mono); font-size: 11px; color: var(--text-2);
+    line-height: 1.7; flex: 1;
+  }
+
+  .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+
+  .card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  .tag {
+    font-family: var(--mono); font-size: 9px;
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text-3); border-radius: 5px; padding: 2px 7px;
+  }
+
+  .card-arrow {
+    font-family: var(--mono); font-size: 11px; color: var(--accent);
+    opacity: 0; transition: opacity 0.15s;
+  }
+
+  .card:hover .card-arrow { opacity: 1; }
+
+  /* ── Type badge colors ── */
+  .type-tool .card-day { background: var(--accent-dim); color: var(--accent); }
+  .type-game .card-day { background: var(--pink-dim); color: var(--pink); }
+  .type-landing .card-day { background: var(--green-dim); color: var(--green); }
+  .type-design .card-day { background: var(--amber-dim); color: var(--amber); }
+  .type-multi .card-day { background: var(--purple-dim); color: var(--purple); }
+  .type-plugin .card-day { background: #f0fdf4; color: #166534; }
+
+  /* ── Filters ── */
+  .filter-bar {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
+    align-items: center;
+  }
+
+  .filter-btn {
+    font-family: var(--mono); font-size: 11px;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text-2); border-radius: 8px; padding: 7px 14px;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  .filter-count {
+    font-family: var(--mono); font-size: 10px; color: var(--text-3);
+    margin-left: auto;
+  }
+
+  /* ── All projects grid ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+  }
+
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px;
+    display: flex; flex-direction: column; gap: 8px;
+    transition: all 0.15s; text-decoration: none; color: inherit;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent); transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(37,99,235,0.07);
+  }
+
+  .project-card.hidden { display: none; }
+
+  .pc-header { display: flex; align-items: center; justify-content: space-between; }
+
+  .pc-day {
+    font-family: var(--mono); font-size: 9px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border-radius: 5px; padding: 2px 7px;
+  }
+
+  .pc-name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .pc-desc { font-family: var(--mono); font-size: 10px; color: var(--text-2); line-height: 1.6; }
+
+  .pc-type {
+    font-family: var(--mono); font-size: 9px; color: var(--text-3);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+
+  /* ── About ── */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+  }
+
+  .about-text { display: flex; flex-direction: column; gap: 16px; }
+  .about-quote {
+    font-size: clamp(18px, 2.5vw, 24px); font-weight: 600;
+    color: var(--text); line-height: 1.5;
+  }
+  .about-quote span { color: var(--accent); }
+
+  .about-body {
+    font-family: var(--mono); font-size: 12px; color: var(--text-2); line-height: 1.8;
+  }
+
+  .about-links { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .about-link {
+    font-family: var(--mono); font-size: 11px; color: var(--accent);
+    background: var(--accent-dim); border: 1px solid var(--accent-mid);
+    border-radius: 8px; padding: 8px 16px; text-decoration: none;
+    transition: all 0.15s;
+  }
+  .about-link:hover { background: var(--accent); color: #fff; }
+
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+
+  .about-stat {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px;
+  }
+
+  .about-stat-num {
+    font-family: var(--mono); font-size: 36px; font-weight: 500;
+    color: var(--accent);
+  }
+
+  .about-stat-label {
+    font-family: var(--mono); font-size: 10px; color: var(--text-3);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--accent); border-radius: 20px;
+    padding: 60px 48px; text-align: center;
+    max-width: 1140px; margin: 0 auto 80px;
+    position: relative; overflow: hidden;
+  }
+
+  .cta-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .cta-content { position: relative; z-index: 2; }
+  .cta-title { font-size: clamp(28px, 4vw, 46px); font-weight: 800; color: #fff; margin-bottom: 12px; }
+  .cta-sub { font-family: var(--mono); font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 28px; line-height: 1.6; }
+
+  .cta-buttons { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+
+  .cta-btn-white {
+    background: #fff; color: var(--accent); border: none;
+    border-radius: 10px; padding: 13px 28px;
+    font-family: var(--mono); font-size: 12px; font-weight: 500;
+    cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-block;
+  }
+  .cta-btn-white:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.2); transform: translateY(-1px); }
+
+  .cta-btn-outline {
+    background: transparent; color: #fff;
+    border: 1px solid rgba(255,255,255,0.4); border-radius: 10px;
+    padding: 13px 24px; font-family: var(--mono); font-size: 12px;
+    cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-block;
+  }
+  .cta-btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--border); padding: 24px 32px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+
+  .footer-left { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
+  .footer-left a { color: var(--accent); text-decoration: none; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
+
+  /* ── Animations ── */
+  @keyframes up { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+
+  .reveal { opacity:0; transform:translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 16px; }
+    .nav-links { display: none; }
+    .section { padding: 60px 16px; }
+    .featured-grid { grid-template-columns: 1fr; }
+    .featured-grid .card:first-child { grid-column: span 1; }
+    .about-grid { grid-template-columns: 1fr; }
+    .cta-section { padding: 40px 24px; margin: 0 16px 60px; }
+    .hero-stats { gap: 16px; }
+    footer { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-logo">ship<span>69</span></div>
+  <div class="nav-links">
+    <a href="#featured" class="nav-link">Featured</a>
+    <a href="#all" class="nav-link">All Projects</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="https://twitter.com" class="nav-cta" target="_blank">Follow @neelesh</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">🚢 June – August 2025</div>
+    <div class="hero-title">69 days.<br><span>69 ships.</span></div>
+    <div class="hero-sub">One project shipped every single day.<br>Design tools, games, AI apps, landing pages — all built solo.</div>
+    <div class="hero-meta">Self-taught · AI-assisted · No degree · Just building</div>
+    <div class="hero-buttons">
+      <a href="#all" class="btn-primary">Browse all projects</a>
+      <a href="#about" class="btn-ghost">About the challenge</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">65</div>
+        <div class="hero-stat-label">Shipped</div>
+      </div>
+      <div class="hero-stat-sep"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">12</div>
+        <div class="hero-stat-label">AI Tools</div>
+      </div>
+      <div class="hero-stat-sep"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">8</div>
+        <div class="hero-stat-label">Games</div>
+      </div>
+      <div class="hero-stat-sep"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">10</div>
+        <div class="hero-stat-label">Landing Pages</div>
+      </div>
+      <div class="hero-stat-sep"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">69</div>
+        <div class="hero-stat-label">Days</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Featured -->
+<section class="section" id="featured">
+  <div class="reveal">
+    <div class="eyebrow">Standout ships</div>
+    <div class="section-title">The best of Ship69</div>
+  </div>
+
+  <div class="featured-grid reveal">
+
+    <a class="card type-tool" href="https://designdigest-three.vercel.app" target="_blank">
+      <div class="card-day">Day 62 · AI Tool · Standout</div>
+      <div class="card-name lg">Designdigest</div>
+      <div class="card-desc">Live design inspiration feed pulling from 12 RSS sources, processed by Groq, categorised into Inspiration, Tools, Articles, and Jobs. Solves a real daily need — never search for design inspo manually again.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag">Groq API</span>
+          <span class="tag">RSS</span>
+          <span class="tag">Live feed</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
+    <a class="card type-multi" href="https://color-analyser.vercel.app" target="_blank">
+      <div class="card-day">Days 14–17 · Design System</div>
+      <div class="card-name">Whyframe</div>
+      <div class="card-desc">A design reasoning engine — not a generator. Four modules: Color Analyzer, Type Scale Builder, Spacing Auditor, Layout Reviewer.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag">Groq API</span>
+          <span class="tag">4 modules</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
+    <a class="card type-tool" href="https://motionstudio.vercel.app" target="_blank">
+      <div class="card-day">Day 66 · Design Tool</div>
+      <div class="card-name">Motionstudio</div>
+      <div class="card-desc">CSS animation playground. Pick a UI element, dial in effect + easing + duration, watch it live, get AI reasoning on why it works.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag">CSS keyframes</span>
+          <span class="tag">Groq AI</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
+    <a class="card type-multi" href="https://foliopath.vercel.app/" target="_blank">
+      <div class="card-day">Days 18–21 · Multi-stage App</div>
+      <div class="card-name">Foliopath</div>
+      <div class="card-desc">Three-stage project lifecycle tool — Brief Generator, Decision Journal with voice-to-text, and Case Study Generator. Multi-project localStorage, image uploads.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag">React + Vite</span>
+          <span class="tag">Voice</span>
+          <span class="tag">3 stages</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
+    <a class="card type-tool" href="https://statboard-lyart.vercel.app" target="_blank">
+      <div class="card-day">Day 67 · Data Viz</div>
+      <div class="card-name">Statboard</div>
+      <div class="card-desc">Metrics dashboard builder with realistic simulated data. Sparkline charts, live ticking numbers, goal progress, trend indicators. Export as HTML.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag">SVG sparklines</span>
+          <span class="tag">Live mode</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
+    <a class="card type-tool" href="https://typefeel.vercel.app" target="_blank">
+      <div class="card-day">Day 64 · Design Tool</div>
+      <div class="card-name">Typefeel</div>
+      <div class="card-desc">Interactive typography playground — manipulate font, size, weight, tracking, leading in real time. Hit Analyse for AI mood breakdown and pairing suggestions.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag">Groq API</span>
+          <span class="tag">16 fonts</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- All Projects -->
+<section class="section" id="all">
+  <div class="reveal">
+    <div class="eyebrow">Every ship</div>
+    <div class="section-title">All 65 projects</div>
+  </div>
+
+  <div class="filter-bar reveal">
+    <button class="filter-btn active" onclick="filter('all', this)">All</button>
+    <button class="filter-btn" onclick="filter('tool', this)">AI Tools</button>
+    <button class="filter-btn" onclick="filter('game', this)">Games</button>
+    <button class="filter-btn" onclick="filter('landing', this)">Landing Pages</button>
+    <button class="filter-btn" onclick="filter('design', this)">Design Tools</button>
+    <button class="filter-btn" onclick="filter('multi', this)">Multi-stage</button>
+    <span class="filter-count" id="filter-count">65 projects</span>
+  </div>
+
+  <div class="projects-grid" id="projects-grid">
+    <!-- Populated by JS -->
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- About -->
+<section class="section" id="about">
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <div class="eyebrow">The story</div>
+      <div class="about-quote">I got into design <span>without a degree</span>. I used AI to build, but I kept running into the same problem.</div>
+      <div class="about-body">
+        Clients didn't understand my decisions, and I wasn't always sure I could explain them either. Ship69 was my answer — 69 days of building things that solve real problems, shipped every single day.<br><br>
+        The goal: a portfolio strong enough to land a design engineering role. The rule: miss 3 days and you're out. I didn't miss 3.<br><br>
+        Every project taught me something new — about design, about shipping, about what actually matters when you're building for real people.
+      </div>
+      <div class="about-links">
+        <a href="https://www.linkedin.com/in/neelesh-agrawal-92472b278/" class="about-link" target="_blank">LinkedIn →</a>
+        <a href="https://github.com/Neelesh-Agrawal" class="about-link" target="_blank">GitHub →</a>
+        <a href="https://ship69-hub.vercel.app/" class="about-link" target="_blank">Ship69 Wrapped →</a>
+      </div>
+    </div>
+    <div class="about-stats">
+      <div class="about-stat">
+        <div class="about-stat-num">65</div>
+        <div class="about-stat-label">Projects shipped</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">69</div>
+        <div class="about-stat-label">Days total</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">6+</div>
+        <div class="about-stat-label">AI APIs used</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">0</div>
+        <div class="about-stat-label">Formal CS degree</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<div style="padding: 80px 32px 0;">
+  <div class="cta-section reveal">
+    <div class="cta-grid"></div>
+    <div class="cta-content">
+      <div class="cta-title">69 days. Done. ✓</div>
+      <div class="cta-sub">Self-taught. AI-assisted. No degree.<br>If you're hiring a design engineer, let's talk.</div>
+      <div class="cta-buttons">
+        <a href="mailto:neelesh.agrawal2022@vitstudent.ac.in" class="cta-btn-white">Get in touch</a>
+        <a href="https://github.com/Neelesh-Agrawal" class="cta-btn-outline" target="_blank">View GitHub</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-left">built by <a href="https://github.com/Neelesh-Agrawal" target="_blank">Neelesh Agrawal</a> · ship69 challenge · 2025</div>
+  <div class="footer-right">design engineering portfolio</div>
+</footer>
+
+<script>
+// ── Project data (matched from tracker + Vercel) ──────────────────────────────
+const projects = [
+  { day:1,  name:'Ship69 Hub',              type:'multi',   desc:'Shell of the hub site — nav, grid layout, empty project cards.',                                            url:'https://ship69-hub.vercel.app/' },
+  { day:2,  name:'Vibe Check Color Tool',   type:'tool',    desc:'Type a mood → AI generates a 6-color palette with mood description, season, and energy level.',             url:'https://vibe-palette.vercel.app' },
+  { day:3,  name:'Font Crime Detector',     type:'tool',    desc:'Upload a UI screenshot → AI files a typography crime report with severity scores and fixes.',                url:'https://font-roast.vercel.app' },
+  { day:4,  name:'Type or Die',             type:'game',    desc:'Terminal-style typing arcade. Words fall from the top — type them before they hit the bottom.',              url:'https://type-or-die-arcade.vercel.app' },
+  { day:5,  name:'Dodge the Meetings',      type:'game',    desc:'Developer dodge game. Avoid falling calendar invites, Slack pings, and Jira tickets.',                       url:'https://dodge-the-meetings.vercel.app' },
+  { day:6,  name:'Fake SaaS Generator',     type:'tool',    desc:'Type any ridiculous idea → AI generates a deadpan professional SaaS landing page you can download.',        url:'https://fake-saa-s-generator-1wcm.vercel.app' },
+  { day:7,  name:'Dodge Wave',              type:'game',    desc:'Mobile dodge game. Drag to avoid waves of enemy projectiles falling in patterns.',                           url:'https://dodge-wave.vercel.app/' },
+  { day:8,  name:'AskAnything',             type:'tool',    desc:'AI-powered answer engine for real life problems. Type any problem → structured actionable advice.',          url:'https://ask-anything-now.vercel.app/' },
+  { day:9,  name:'Layer Audit',             type:'tool',    desc:'Figma plugin that scans layers for bad naming — default names, deep nesting — with issue + fix + severity.', url:'#' },
+  { day:10, name:'Cinematic 404 Page',      type:'design',  desc:'Animated 404. Astronaut floats outside spacecraft, wire snaps, drifts into darkness.',                      url:'https://404-green-six.vercel.app/' },
+  { day:11, name:'Stackr Landing',          type:'landing', desc:'Full landing page for Stackr — fake SaaS that tracks subscriptions and helps you cancel unused ones.',       url:'https://stackr-seven.vercel.app' },
+  { day:12, name:'Pulsr Landing',           type:'landing', desc:'Landing page for Pulsr — real-time analytics for indie developers. Dark and bold.',                          url:'https://pulsr-ruddy.vercel.app/' },
+  { day:13, name:'Idea Validator',          type:'tool',    desc:'Describe your SaaS idea → AI scores it across 5 dimensions with a Build It / Needs Work / Skip It verdict.', url:'https://saas-verdict.vercel.app' },
+  { day:14, name:'Whyframe Color Analyzer', type:'multi',   desc:'Module 01 of Whyframe — palette input or image extract → AI reasoning on why each color works.',            url:'https://color-analyser.vercel.app' },
+  { day:15, name:'Whyframe Type Scale',     type:'multi',   desc:'Module 02 — base + multiplier → full type scale with semantic tags and AI reasoning.',                      url:'https://type-scale-eight.vercel.app/' },
+  { day:16, name:'Whyframe Spacing Auditor',type:'multi',   desc:'Module 03 — 10 audit checks, health score 0–100, AI teaching section, 5 export formats.',                   url:'https://spacing-auditor.vercel.app/' },
+  { day:17, name:'Whyframe Layout Reviewer',type:'multi',   desc:'Module 04 — 4 modes, 16 layout patterns, health score, skeleton comparison.',                               url:'https://layout-lab-navy.vercel.app' },
+  { day:18, name:'Foliopath Brief Gen',     type:'multi',   desc:'Stage 01 of Foliopath — generates structured project briefs from minimal inputs.',                           url:'https://foliopath.vercel.app/' },
+  { day:19, name:'Foliopath Decision Journal',type:'multi', desc:'Stage 02 — voice-to-text journal for logging design decisions throughout a project.',                        url:'https://foliopath.vercel.app/' },
+  { day:20, name:'Foliopath Case Study',    type:'multi',   desc:'Stage 03 — 6 fields → full case study with image upload support.',                                           url:'https://foliopath.vercel.app/' },
+  { day:21, name:'Foliopath Full Launch',   type:'multi',   desc:'All 3 Foliopath stages unified and launched as one complete product on a single Vercel deployment.',        url:'https://foliopath.vercel.app/' },
+  { day:22, name:'Questline',              type:'tool',    desc:'Task rewriting engine. Rewrites dull tasks in three tone modes — Clear, Balanced, Expressive.',               url:'https://questline-narrative.vercel.app' },
+  { day:23, name:'Casework',            type:'game',    desc:'Story-based game teaching design thinking to teenagers through branching narrative choices.',                  url:'https://casework.vercel.app' },
+  { day:24, name:'Vibe Check Song Edition',type:'tool',    desc:'Type your mood → get a song recommendation. Groq-powered.',                                                   url:'#' },
+  { day:25, name:'Bored Button',           type:'design',  desc:'One button, one random thing to do when bored. Pure frontend, no API.',                                       url:'https://bored-button-spark.vercel.app' },
+  { day:26, name:'Streak',                 type:'landing', desc:'Habit tracker mobile app landing page. Dark charcoal + electric lime. Editorial sports mag energy.',         url:'https://streak-showcase.vercel.app' },
+  { day:27, name:'Pulse',                  type:'landing', desc:'Fake user feedback SaaS landing page. Black + electric blue. Brutalist grid with live widget mockup.',       url:'https://pulse-landing-rho.vercel.app' },
+  { day:28, name:'Flo',                    type:'landing', desc:'Deep work timer mobile app landing. Warm cream + blood orange. Monastic feel, philosophy section.',          url:'https://flo-showcase.vercel.app' },
+  { day:29, name:'Forma',                  type:'landing', desc:'Fake analytics SaaS. White + coral. Full MRR area chart hero, donut + funnel charts.',                       url:'https://forma-landing-ten.vercel.app/' },
+  { day:30, name:'Escape 9–5',             type:'game',    desc:'Office survival platformer. Dodge emails + boss. Getting hit triggers a random work task to complete.',      url:'https://escape-9to5-tasks.vercel.app/' },
+  { day:35, name:'Fontmood',              type:'design',  desc:'Type any sentence, see it across 10 font pairings with mood labels. Click for full Figma spec.',              url:'https://fontmood.vercel.app/' },
+  { day:36, name:'Mirrorboard',           type:'design',  desc:'Type one sentence → see it as a designed poster across 6 styles. Copy Figma spec.',                          url:'#' },
+  { day:37, name:'Void Studio',           type:'landing', desc:'Fake design agency landing. Brutalist grid, Archivo Black, 6-project work grid, scrolling marquee.',         url:'https://void-studio-landing.vercel.app/' },
+  { day:38, name:'Gridluck',             type:'design',  desc:'Generative poster machine. 6 layouts, 8 palettes, 6 font pairings, 5 textures. Every output looks designed.', url:'https://gridluck-generative-poster-zijn.vercel.app/' },
+  { day:43, name:'Typeduel',             type:'game',    desc:'Typing speed test with design / philosophy / stoic quote modes. Shows WPM, accuracy, errors, grade.',         url:'https://typeduel-typing-test.vercel.app/' },
+  { day:44, name:'Briefcard',            type:'design',  desc:'Build brief generator. 4 fields → product name, palette, font pairing, build checklist, Ship69 description.', url:'https://briefcard.vercel.app/' },
+  { day:45, name:'Heatmap',              type:'design',  desc:'Fake analytics dashboard with live visitor counter, event feed, trend charts, top pages, countries, devices.', url:'https://heatmap-azure.vercel.app/' },
+  { day:46, name:'Designgrill',          type:'tool',    desc:'AI design interview simulator. 4 modes, 3 levels, 60 questions. Honest feedback + end scorecard.',            url:'https://designgrill.vercel.app/' },
+  { day:47, name:'Sero',                 type:'landing', desc:'Sleep tracking app landing. Deep navy + amber. Phone mockup with sleep score and heart rate chart.',           url:'https://sero-sleep-app.vercel.app/' },
+  { day:48, name:'Colordump',            type:'design',  desc:'Paste any hex → full token system. 10-stop shade scale, 8 semantic tokens, CSS/Tailwind/Figma/SCSS export.',  url:'https://colordump.vercel.app/' },
+  { day:50, name:'Folio',               type:'tool',    desc:'Portfolio presentation tool. Add projects, present full-screen with keyboard nav, progress bar, dot navigation.', url:'https://folio-portfolio-presenter.vercel.app' },
+  { day:51, name:'Mockframe',           type:'design',  desc:'Browser/phone mockup generator. Custom title, description, URL. Copy HTML output.',                            url:'https://mockframebeta.vercel.app' },
+  { day:54, name:'Vibespec',            type:'tool',    desc:'Describe a feeling, film, place → full design direction: palette, typefaces, spacing mood, creative brief.',   url:'https://vibespec-tan.vercel.app' },
+  { day:55, name:'Specwriter',          type:'tool',    desc:'Describe a UI component → full handoff spec: typography, spacing, colour, interaction states, accessibility.', url:'https://specwriter-delta.vercel.app/' },
+  { day:56, name:'Microcopy',           type:'tool',    desc:'Describe a UI moment → 3 variations of headline, subtext, and CTA across 10 moment types and 3 tones.',       url:'https://microcopy-opal.vercel.app/' },
+  { day:57, name:'Jobfit',              type:'tool',    desc:'Fit Check (score 0–100 on applying) + CV Match (rewrite bullets to match JD language, surface keywords).',     url:'https://jobfit-khaki.vercel.app/' },
+  { day:58, name:'Casebrief',           type:'tool',    desc:'6 fields → one-liner, case study paragraph, LinkedIn post. Four audience modes.',                               url:'https://casebrief-five.vercel.app/' },
+  { day:59, name:'Lintui',              type:'tool',    desc:'Design system auditor — paste tokens, components, naming → prioritised issue list. Five audit types.',         url:'https://lintui.vercel.app' },
+  { day:60, name:'Skindrop',            type:'landing', desc:'Premium skincare landing. Split hero, scrolling marquee, 3-product grid, 4-step ritual, ingredients breakdown.',url:'https://skindrop-xi.vercel.app/' },
+  { day:61, name:'Solepeak',            type:'landing', desc:'Premium sneaker landing with Unsplash images. Bold streetwear, yellow marquee, interactive size selector.',    url:'https://solepeak.vercel.app' },
+  { day:62, name:'Designdigest',        type:'tool',    desc:'Live design inspiration feed from 12 RSS sources, processed by Groq. Never shows empty — standout ship.',      url:'https://designdigest.vercel.app/' },
+  { day:63, name:'Bored Button v2',     type:'design',  desc:'Refined one-button random activity generator.',                                                                 url:'https://bored-button-spark.vercel.app/' },
+  { day:64, name:'Typefeel',            type:'tool',    desc:'Typography playground — pick font, manipulate all properties in real time, AI mood breakdown.',                url:'https://typefeel.vercel.app' },
+  { day:65, name:'Codewatch',           type:'landing', desc:'Bold B2B landing for fake AI code review SaaS. Live code mockup, inline issue detection, 3-tier pricing.',    url:'https://codewatch-beta.vercel.app/' },
+  { day:66, name:'Motionstudio',        type:'tool',    desc:'CSS animation playground. Pick element, effect, easing, duration — live preview + AI reasoning. Copy CSS.',   url:'https://motionstudio-five.vercel.app/' },
+  { day:67, name:'Statboard',           type:'tool',    desc:'Metrics dashboard builder with realistic sparklines, live ticking numbers, goal progress. Export HTML.',       url:'https://statboard-lyart.vercel.app' },
+  { day:68, name:'Ship69 Wrapped',      type:'design',  desc:'Stats page celebrating the full 69-day run. Counts, type breakdown, timeline, standout projects, share card.', url:'https://ship69-hub.vercel.app/' },
+];
+
+// Type labels
+const typeLabel = { tool:'AI Tool', game:'Game', landing:'Landing Page', design:'Design Tool', multi:'Multi-stage', plugin:'Plugin' };
+
+// Render grid
+function renderGrid(filtered) {
+  const grid = document.getElementById('projects-grid');
+  const count = document.getElementById('filter-count');
+
+  grid.innerHTML = filtered.map(p => {
+    const typeColor = {
+      tool: 'background:var(--accent-dim);color:var(--accent)',
+      game: 'background:var(--pink-dim);color:var(--pink)',
+      landing: 'background:var(--green-dim);color:var(--green)',
+      design: 'background:var(--amber-dim);color:var(--amber)',
+      multi: 'background:var(--purple-dim);color:var(--purple)',
+      plugin: 'background:#f0fdf4;color:#166534'
+    }[p.type] || '';
+
+    const isLink = p.url && p.url !== '#';
+
+    return `<a class="project-card type-${p.type}" ${isLink ? `href="${p.url}" target="_blank"` : ''} style="${!isLink ? 'cursor:default;opacity:0.6' : ''}">
+      <div class="pc-header">
+        <div class="pc-day" style="${typeColor}">Day ${p.day}</div>
+        ${isLink ? '<span style="font-size:11px;color:var(--accent)">→</span>' : ''}
+      </div>
+      <div class="pc-name">${p.name}</div>
+      <div class="pc-desc">${p.desc}</div>
+      <div class="pc-type">${typeLabel[p.type] || p.type}</div>
+    </a>`;
+  }).join('');
+
+  count.textContent = `${filtered.length} project${filtered.length !== 1 ? 's' : ''}`;
+}
+
+// Filter
+function filter(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered = type === 'all' ? projects : projects.filter(p => p.type === type);
+  renderGrid(filtered);
+}
+
+// Intersection observer
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Init
+renderGrid(projects);
+</script>
+
+</body>
+</html>
