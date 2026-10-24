@@ -1,611 +1,167 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ship69 — 69 Projects in 69 Days</title>
-<meta name="description" content="One project shipped every day for 69 days. Design tools, games, AI apps, landing pages — built by Neelesh Agrawal.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ship69 · 69 days, one ship a day</title>
+<meta name="description" content="Ship69: Neelesh Agrawal shipped a project every day for 69 days. Design tools, AI apps, games and landing pages, all live.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #f8fafc;
-    --surface: #ffffff;
-    --surface2: #f1f5f9;
-    --border: #e2e8f0;
-    --border-bright: #cbd5e1;
-    --accent: #2563eb;
-    --accent-dim: #dbeafe;
-    --accent-mid: #93c5fd;
-    --text: #0f172a;
-    --text-2: #475569;
-    --text-3: #94a3b8;
-    --mono: 'DM Mono', monospace;
-    --sans: 'Syne', sans-serif;
-    --green: #16a34a;
-    --green-dim: #dcfce7;
-    --pink: #be185d;
-    --pink-dim: #fce7f3;
-    --amber: #b45309;
-    --amber-dim: #fef9c3;
-    --purple: #6d28d9;
-    --purple-dim: #ede9fe;
-  }
-
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); overflow-x: hidden; }
-
-  /* ── Nav ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 32px; height: 56px;
-    background: rgba(248,250,252,0.94);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo { font-family: var(--mono); font-size: 14px; color: var(--text); font-weight: 500; }
-  .nav-logo span { color: var(--accent); }
-
-  .nav-links { display: flex; align-items: center; gap: 6px; }
-
-  .nav-link {
-    font-family: var(--mono); font-size: 11px; color: var(--text-2);
-    padding: 6px 12px; border-radius: 8px; cursor: pointer;
-    transition: all 0.15s; text-decoration: none; border: none; background: none;
-  }
-  .nav-link:hover { background: var(--surface2); color: var(--text); }
-
-  .nav-cta {
-    background: var(--accent); color: #fff;
-    border: none; border-radius: 8px; padding: 7px 16px;
-    font-family: var(--mono); font-size: 11px; font-weight: 500;
-    cursor: pointer; transition: all 0.15s; text-decoration: none;
-  }
-  .nav-cta:hover { background: #1d4ed8; }
-
-  /* ── Hero ── */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center; padding: 100px 24px 80px;
-    position: relative; overflow: hidden;
-  }
-
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 40px 40px; opacity: 0.5;
-  }
-
-  .hero-glow {
-    position: absolute; width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%);
-    top: 50%; left: 50%; transform: translate(-50%, -55%); pointer-events: none;
-  }
-
-  .hero-content { position: relative; z-index: 2; max-width: 700px; }
-
-  .hero-eyebrow {
-    font-family: var(--mono); font-size: 11px; font-weight: 500;
-    color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase;
-    background: var(--accent-dim); border: 1px solid var(--accent-mid);
-    border-radius: 20px; padding: 5px 16px; display: inline-block;
-    margin-bottom: 28px; animation: up 0.6s ease both;
-  }
-
-  .hero-title {
-    font-size: clamp(52px, 10vw, 100px); font-weight: 800; line-height: 0.95;
-    letter-spacing: -0.04em; color: var(--text);
-    animation: up 0.6s 0.1s ease both;
-  }
-
-  .hero-title span { color: var(--accent); }
-
-  .hero-sub {
-    font-size: clamp(16px, 2vw, 20px); color: var(--text-2); font-weight: 500;
-    margin-top: 20px; line-height: 1.5;
-    animation: up 0.6s 0.2s ease both;
-  }
-
-  .hero-meta {
-    font-family: var(--mono); font-size: 12px; color: var(--text-3);
-    margin-top: 10px; animation: up 0.6s 0.25s ease both;
-  }
-
-  .hero-buttons {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    margin-top: 36px; animation: up 0.6s 0.3s ease both;
-  }
-
-  .btn-primary {
-    background: var(--accent); color: #fff; border: none; border-radius: 10px;
-    padding: 13px 28px; font-family: var(--mono); font-size: 12px; font-weight: 500;
-    cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-block;
-  }
-  .btn-primary:hover { background: #1d4ed8; box-shadow: 0 4px 20px rgba(37,99,235,0.25); }
-
-  .btn-ghost {
-    background: var(--surface); color: var(--text-2);
-    border: 1px solid var(--border-bright); border-radius: 10px;
-    padding: 13px 24px; font-family: var(--mono); font-size: 12px;
-    cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-block;
-  }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* Stats strip */
-  .hero-stats {
-    display: flex; align-items: center; justify-content: center; gap: 32px;
-    margin-top: 48px; padding-top: 32px;
-    border-top: 1px solid var(--border);
-    animation: up 0.6s 0.4s ease both;
-  }
-
-  .hero-stat { text-align: center; }
-  .hero-stat-num { font-family: var(--mono); font-size: 28px; font-weight: 500; color: var(--accent); }
-  .hero-stat-label { font-family: var(--mono); font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
-
-  .hero-stat-sep { width: 1px; height: 40px; background: var(--border); }
-
-  /* ── Section ── */
-  .section { padding: 80px 32px; max-width: 1140px; margin: 0 auto; }
-  .divider { height: 1px; background: var(--border); max-width: 1140px; margin: 0 auto; }
-
-  .eyebrow {
-    font-family: var(--mono); font-size: 10px; font-weight: 500;
-    color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px;
-  }
-
-  .section-title {
-    font-size: clamp(26px, 3.5vw, 38px); font-weight: 800;
-    color: var(--text); margin-bottom: 36px; line-height: 1.1;
-  }
-
-  /* ── Featured ── */
-  .featured-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-
-  .featured-grid .card:first-child {
-    grid-column: span 2;
-  }
-
-  .featured-grid .card.wide {
-    grid-column: span 2;
-  }
-
-  .card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 16px; padding: 24px;
-    display: flex; flex-direction: column; gap: 12px;
-    transition: all 0.2s; text-decoration: none; color: inherit;
-    position: relative; overflow: hidden;
-  }
-
-  .card:hover {
-    border-color: var(--accent); transform: translateY(-3px);
-    box-shadow: 0 8px 32px rgba(37,99,235,0.08);
-  }
-
-  .card-day {
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
-    color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase;
-    background: var(--accent-dim); border-radius: 6px; padding: 3px 8px;
-    width: fit-content;
-  }
-
-  .card-name { font-size: 20px; font-weight: 800; color: var(--text); }
-  .card-name.lg { font-size: 26px; }
-
-  .card-desc {
-    font-family: var(--mono); font-size: 11px; color: var(--text-2);
-    line-height: 1.7; flex: 1;
-  }
-
-  .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
-
-  .card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-
-  .tag {
-    font-family: var(--mono); font-size: 9px;
-    background: var(--surface2); border: 1px solid var(--border);
-    color: var(--text-3); border-radius: 5px; padding: 2px 7px;
-  }
-
-  .card-arrow {
-    font-family: var(--mono); font-size: 11px; color: var(--accent);
-    opacity: 0; transition: opacity 0.15s;
-  }
-
-  .card:hover .card-arrow { opacity: 1; }
-
-  /* ── Type badge colors ── */
-  .type-tool .card-day { background: var(--accent-dim); color: var(--accent); }
-  .type-game .card-day { background: var(--pink-dim); color: var(--pink); }
-  .type-landing .card-day { background: var(--green-dim); color: var(--green); }
-  .type-design .card-day { background: var(--amber-dim); color: var(--amber); }
-  .type-multi .card-day { background: var(--purple-dim); color: var(--purple); }
-  .type-plugin .card-day { background: #f0fdf4; color: #166534; }
-
-  /* ── Filters ── */
-  .filter-bar {
-    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
-    align-items: center;
-  }
-
-  .filter-btn {
-    font-family: var(--mono); font-size: 11px;
-    background: var(--surface); border: 1px solid var(--border);
-    color: var(--text-2); border-radius: 8px; padding: 7px 14px;
-    cursor: pointer; transition: all 0.15s;
-  }
-  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-
-  .filter-count {
-    font-family: var(--mono); font-size: 10px; color: var(--text-3);
-    margin-left: auto;
-  }
-
-  /* ── All projects grid ── */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 12px;
-  }
-
-  .project-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 12px; padding: 18px;
-    display: flex; flex-direction: column; gap: 8px;
-    transition: all 0.15s; text-decoration: none; color: inherit;
-  }
-
-  .project-card:hover {
-    border-color: var(--accent); transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(37,99,235,0.07);
-  }
-
-  .project-card.hidden { display: none; }
-
-  .pc-header { display: flex; align-items: center; justify-content: space-between; }
-
-  .pc-day {
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    border-radius: 5px; padding: 2px 7px;
-  }
-
-  .pc-name { font-size: 15px; font-weight: 700; color: var(--text); }
-  .pc-desc { font-family: var(--mono); font-size: 10px; color: var(--text-2); line-height: 1.6; }
-
-  .pc-type {
-    font-family: var(--mono); font-size: 9px; color: var(--text-3);
-    text-transform: uppercase; letter-spacing: 0.08em;
-  }
-
-  /* ── About ── */
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
-  }
-
-  .about-text { display: flex; flex-direction: column; gap: 16px; }
-  .about-quote {
-    font-size: clamp(18px, 2.5vw, 24px); font-weight: 600;
-    color: var(--text); line-height: 1.5;
-  }
-  .about-quote span { color: var(--accent); }
-
-  .about-body {
-    font-family: var(--mono); font-size: 12px; color: var(--text-2); line-height: 1.8;
-  }
-
-  .about-links { display: flex; gap: 10px; flex-wrap: wrap; }
-
-  .about-link {
-    font-family: var(--mono); font-size: 11px; color: var(--accent);
-    background: var(--accent-dim); border: 1px solid var(--accent-mid);
-    border-radius: 8px; padding: 8px 16px; text-decoration: none;
-    transition: all 0.15s;
-  }
-  .about-link:hover { background: var(--accent); color: #fff; }
-
-  .about-stats {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-  }
-
-  .about-stat {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 12px; padding: 20px;
-  }
-
-  .about-stat-num {
-    font-family: var(--mono); font-size: 36px; font-weight: 500;
-    color: var(--accent);
-  }
-
-  .about-stat-label {
-    font-family: var(--mono); font-size: 10px; color: var(--text-3);
-    text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px;
-  }
-
-  /* ── CTA ── */
-  .cta-section {
-    background: var(--accent); border-radius: 20px;
-    padding: 60px 48px; text-align: center;
-    max-width: 1140px; margin: 0 auto 80px;
-    position: relative; overflow: hidden;
-  }
-
-  .cta-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
-
-  .cta-content { position: relative; z-index: 2; }
-  .cta-title { font-size: clamp(28px, 4vw, 46px); font-weight: 800; color: #fff; margin-bottom: 12px; }
-  .cta-sub { font-family: var(--mono); font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 28px; line-height: 1.6; }
-
-  .cta-buttons { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
-
-  .cta-btn-white {
-    background: #fff; color: var(--accent); border: none;
-    border-radius: 10px; padding: 13px 28px;
-    font-family: var(--mono); font-size: 12px; font-weight: 500;
-    cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-block;
-  }
-  .cta-btn-white:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.2); transform: translateY(-1px); }
-
-  .cta-btn-outline {
-    background: transparent; color: #fff;
-    border: 1px solid rgba(255,255,255,0.4); border-radius: 10px;
-    padding: 13px 24px; font-family: var(--mono); font-size: 12px;
-    cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-block;
-  }
-  .cta-btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
-
-  /* ── Footer ── */
-  footer {
-    border-top: 1px solid var(--border); padding: 24px 32px;
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-  }
-
-  .footer-left { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
-  .footer-left a { color: var(--accent); text-decoration: none; }
-  .footer-right { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
-
-  /* ── Animations ── */
-  @keyframes up { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
-
-  .reveal { opacity:0; transform:translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
-  .reveal.visible { opacity:1; transform:translateY(0); }
-
-  /* ── Responsive ── */
-  @media (max-width: 768px) {
-    nav { padding: 0 16px; }
-    .nav-links { display: none; }
-    .section { padding: 60px 16px; }
-    .featured-grid { grid-template-columns: 1fr; }
-    .featured-grid .card:first-child { grid-column: span 1; }
-    .featured-grid .card.wide { grid-column: span 1; }
-    .about-grid { grid-template-columns: 1fr; }
-    .cta-section { padding: 40px 24px; margin: 0 16px 60px; }
-    .hero-stats { gap: 16px; }
-    footer { padding: 20px 16px; }
-  }
+:root{--bg:#f6f5f1;--card:#fff;--ink:#121212;--muted:#67655f;--line:#e4e1d9;--soft:#eeebe4;--accent:#2f5bff;
+--tool:#2f5bff;--game:#e5397a;--landing:#0f9d6b;--design:#e08a00;--multi:#7c4dff;--mono:'JetBrains Mono',ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#0e0e0d;--card:#171716;--ink:#f0eee9;--muted:#9e9b93;--line:#2a2927;--soft:#1f1f1d;--accent:#6f8cff;--tool:#6f8cff;--game:#ff5c97;--landing:#2fc28d;--design:#ffae2e;--multi:#a585ff}}
+*{box-sizing:border-box;margin:0}[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{font:15px/1.6 Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+.logo{font:800 1.15rem var(--mono);letter-spacing:-.04em}.logo b{color:var(--accent)}
+.links{display:flex;gap:4px;align-items:center}
+.links a{font-size:.86rem;color:var(--muted);padding:7px 11px;border-radius:9px}
+.links a:hover{color:var(--ink);background:var(--soft)}
+.links .cta{background:var(--ink);color:var(--bg)}.links .cta:hover{background:var(--ink);color:var(--bg);opacity:.9}
+.eyebrow{font:500 .72rem var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+/* hero */
+.hero{padding:64px 0 40px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(3rem,8vw,6.2rem);line-height:.92;letter-spacing:-.06em;font-weight:900;margin:14px 0 18px}
+.hero h1 span{color:var(--accent)}
+.hero p{color:var(--muted);font-size:1.05rem;max-width:44ch}
+.btns{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.btn{border-radius:12px;padding:12px 20px;font-weight:700;font-size:.92rem;border:1px solid var(--line);background:var(--card);transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.cal{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px}
+.cal-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.cal-h b{font-size:.95rem}
+.days{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.day{aspect-ratio:1;border-radius:7px;background:var(--soft);position:relative;display:grid;place-items:center;font:600 .62rem var(--mono);color:transparent;transition:transform .15s}
+.day.on{background:var(--c);color:rgba(255,255,255,.0)}
+.day.on:hover,.day.on:focus-visible{transform:scale(1.18);color:#fff;z-index:2;outline:none;box-shadow:0 6px 16px rgba(0,0,0,.18)}
+.day.off{background:repeating-linear-gradient(45deg,var(--soft),var(--soft) 3px,transparent 3px,transparent 6px);border:1px solid var(--line)}
+.tip{position:fixed;z-index:20;pointer-events:none;background:var(--ink);color:var(--bg);border-radius:10px;padding:8px 11px;font-size:.8rem;max-width:240px;opacity:0;transition:opacity .12s}
+.tip small{display:block;font:500 .66rem var(--mono);opacity:.7;text-transform:uppercase;letter-spacing:.06em}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;font-size:.76rem;color:var(--muted)}
+.legend span{display:flex;gap:6px;align-items:center}.legend i{width:10px;height:10px;border-radius:3px;background:var(--c)}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line);border-radius:18px;background:var(--card);margin:10px 0 70px;overflow:hidden}
+.stats div{padding:18px 20px;border-right:1px solid var(--line)}.stats div:last-child{border:0}
+.stats b{display:block;font-size:2rem;font-weight:800;letter-spacing:-.05em;line-height:1.1}
+.stats span{font-size:.8rem;color:var(--muted)}
+/* sections */
+section{padding-bottom:80px}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px;flex-wrap:wrap}
+.sh h2{font-size:clamp(1.8rem,3.4vw,2.6rem);letter-spacing:-.04em;line-height:1.05;margin-top:6px}
+.sh p{color:var(--muted);max-width:46ch;font-size:.92rem}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.fc{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s}
+.fc:hover{transform:translateY(-3px);border-color:var(--c)}
+.fc::before{content:'';position:absolute;inset:0 0 auto;height:4px;background:var(--c)}
+.fc .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.badge{font:600 .62rem var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:3px 8px;border-radius:6px;background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--c)}
+.new{font:600 .62rem var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:3px 8px;border-radius:6px;background:var(--ink);color:var(--bg)}
+.fc h3{font-size:1.4rem;letter-spacing:-.03em;line-height:1.15}
+.fc p{font-size:.88rem;color:var(--muted);flex:1}
+.fc .go{font-size:.84rem;font-weight:600;display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--line)}
+.fc .go span{font:500 .72rem var(--mono);color:var(--muted)}
+.fc.wide{grid-column:span 2}.fc.full{grid-column:1/-1}
+.fc.wide h3{font-size:1.8rem}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+.filters{display:flex;gap:4px;flex-wrap:wrap}
+.filters button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 13px;font-size:.84rem;font-weight:600;color:var(--muted);display:flex;gap:7px;align-items:center}
+.filters button i{width:8px;height:8px;border-radius:50%;background:var(--c,var(--muted))}
+.filters button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.search{margin-left:auto;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:var(--card);min-width:230px}
+.search input{border:0;background:none;outline:none;width:100%;font-size:.86rem}
+.count{font:500 .76rem var(--mono);color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-content:start;transition:border-color .15s,transform .15s}
+a.pc:hover{border-color:var(--c);transform:translateY(-2px)}
+.pc .n{grid-row:span 3;font:700 1.5rem/1 var(--mono);color:var(--c);letter-spacing:-.04em;min-width:38px}
+.pc .n small{display:block;font-size:.56rem;color:var(--muted);letter-spacing:.08em;margin-bottom:3px}
+.pc h4{font-size:.98rem;letter-spacing:-.01em;display:flex;justify-content:space-between;gap:8px}
+.pc h4 span{color:var(--muted);font-weight:400}
+.pc p{font-size:.82rem;color:var(--muted);line-height:1.5}
+.pc .t{font:500 .64rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--c);margin-top:4px}
+.pc.dead{opacity:.55}
+.story{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:start}
+.story blockquote{font-size:clamp(1.5rem,2.8vw,2.1rem);line-height:1.2;letter-spacing:-.03em;font-weight:700;margin:12px 0 18px}
+.story blockquote span{color:var(--accent)}
+.story p{color:var(--muted);margin-bottom:12px}
+.rules{display:grid;gap:10px}
+.rule{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start}
+.rule b{font:700 1.4rem/1 var(--mono);color:var(--accent);min-width:34px}
+.rule h4{font-size:.95rem}.rule p{font-size:.84rem;margin:2px 0 0}
+.pl{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap}
+.pl a{font-weight:600;font-size:.9rem;border-bottom:1.5px solid var(--ink)}
+.end{background:var(--ink);color:var(--bg);border-radius:28px;padding:clamp(32px,6vw,64px);display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:end;margin-bottom:60px;position:relative;overflow:hidden}
+.end h2{font-size:clamp(2.2rem,5vw,3.8rem);letter-spacing:-.05em;line-height:1}
+.end p{opacity:.7;margin-top:12px;max-width:40ch}
+.end .btns{justify-content:flex-end}
+.end .btn{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.end .btn.ghost{background:none;color:var(--bg);border-color:rgba(255,255,255,.3)}
+@media (prefers-color-scheme:dark){.end .btn.ghost{border-color:rgba(0,0,0,.25)}}
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;padding-top:20px;padding-bottom:30px;font-size:.8rem;color:var(--muted);flex-wrap:wrap}
+footer a{text-decoration:underline}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+@media (max-width:960px){.hero{grid-template-columns:1fr;gap:34px;padding-top:40px}.feat{grid-template-columns:1fr 1fr}.story,.end{grid-template-columns:1fr}.end .btns{justify-content:flex-start}.stats{grid-template-columns:repeat(3,1fr)}.stats div:nth-child(3){border-right:0}.stats div:nth-child(-n+3){border-bottom:1px solid var(--line)}}
+@media (max-width:600px){.wrap{padding:0 16px}.links a:not(.cta){display:none}.feat{grid-template-columns:1fr}.fc.wide{grid-column:auto}.stats{grid-template-columns:1fr 1fr}.stats div{border-right:0!important;border-bottom:1px solid var(--line)}.stats div:nth-child(odd){border-right:1px solid var(--line)!important}.stats div:last-child{grid-column:span 2;border-bottom:0}.search{margin-left:0;width:100%}.days{gap:4px}.cal{padding:16px}.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<!-- Nav -->
-<nav>
-  <div class="nav-logo">ship<span>69</span></div>
-  <div class="nav-links">
-    <a href="#featured" class="nav-link">Featured</a>
-    <a href="#all" class="nav-link">All Projects</a>
-    <a href="#about" class="nav-link">About</a>
-    <a href="https://www.linkedin.com/in/neelesh-agrawal-92472b278/" class="nav-cta" target="_blank">Follow @neelesh</a>
-  </div>
-</nav>
-
-<!-- Hero -->
-<div class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">🚢 March – June 2026</div>
-    <div class="hero-title">69 days.<br><span>69 ships.</span></div>
-    <div class="hero-sub">One project shipped every single day.<br>Design tools, games, AI apps, landing pages — all built solo.</div>
-    <div class="hero-meta">Self-taught · AI-assisted · No degree · Just building</div>
-    <div class="hero-buttons">
-      <a href="#all" class="btn-primary">Browse all projects</a>
-      <a href="#about" class="btn-ghost">About the challenge</a>
+<nav><div class="wrap"><a class="logo" href="#top">ship<b>69</b></a><div class="links"><a href="#best">Best</a><a href="#all">All ships</a><a href="#story">Story</a><a class="cta" href="https://neeleshagrawal.vercel.app" target="_blank" rel="noopener">Portfolio ↗</a></div></div></nav>
+<main class="wrap" id="top">
+  <section class="hero" style="padding-bottom:40px">
+    <div>
+      <span class="eyebrow">March to June 2026 · Neelesh Agrawal</span>
+      <h1>69 days.<br><span>One ship a day.</span></h1>
+      <p>Design tools, AI apps, games and landing pages, each one live on the day it was made. The rule: miss three days and it is over. I did not miss three.</p>
+      <div class="btns"><a class="btn dark" href="#best">See the best ones</a><a class="btn" href="#all">Browse all <span id="n-live"></span></a></div>
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num">65</div>
-        <div class="hero-stat-label">Shipped</div>
+    <div class="cal" aria-label="The 69 days">
+      <div class="cal-h"><b>The run, day by day</b><span class="eyebrow" id="cal-n"></span></div>
+      <div class="days" id="days"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+  </section>
+  <div class="stats" id="stats"></div>
+
+  <section id="best">
+    <div class="sh reveal"><div><span class="eyebrow">Standout ships</span><h2>The ones worth your time</h2></div><p>Picked for usefulness, not novelty. Several were rebuilt in October 2026 with a proper interface and a working AI back end.</p></div>
+    <div class="feat" id="feat"></div>
+  </section>
+
+  <section id="all">
+    <div class="sh reveal"><div><span class="eyebrow">Every ship</span><h2>All of them, in order</h2></div></div>
+    <div class="bar"><div class="filters" id="filters"></div><label class="search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search by name or idea" aria-label="Search projects"></label></div>
+    <p class="count" id="count" style="margin-bottom:12px"></p>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="story">
+    <div class="story reveal">
+      <div><span class="eyebrow">The story</span>
+        <blockquote>I got into design <span>without a degree</span>. I used AI to build, and kept hitting the same wall.</blockquote>
+        <p>Clients did not understand my decisions, and I was not always sure I could explain them either. Ship69 was the answer: 69 days of building things that solve real problems, shipped every single day.</p>
+        <p>Every project taught me something about design, about shipping, and about what matters when you build for real people.</p>
+        <div class="pl"><a href="https://neeleshagrawal.vercel.app" target="_blank" rel="noopener">Portfolio ↗</a><a href="https://www.linkedin.com/in/neelesh-agrawal-92472b278/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://github.com/Neelesh-Agrawal" target="_blank" rel="noopener">GitHub ↗</a></div>
       </div>
-      <div class="hero-stat-sep"></div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">12</div>
-        <div class="hero-stat-label">AI Tools</div>
-      </div>
-      <div class="hero-stat-sep"></div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">8</div>
-        <div class="hero-stat-label">Games</div>
-      </div>
-      <div class="hero-stat-sep"></div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">10</div>
-        <div class="hero-stat-label">Landing Pages</div>
-      </div>
-      <div class="hero-stat-sep"></div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">69</div>
-        <div class="hero-stat-label">Days</div>
+      <div class="rules">
+        <div class="rule"><b>01</b><div><h4>Ship every day</h4><p>Something live on a real URL before midnight. Ideas do not count.</p></div></div>
+        <div class="rule"><b>02</b><div><h4>Miss three, you are out</h4><p>Some days were small. None were skipped three times in a row.</p></div></div>
+        <div class="rule"><b>03</b><div><h4>Solve something real</h4><p>A tool I or a designer friend would open again, or a game worth a second round.</p></div></div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<div class="divider"></div>
-
-<!-- Featured -->
-<section class="section" id="featured">
-  <div class="reveal">
-    <div class="eyebrow">Standout ships</div>
-    <div class="section-title">The best of Ship69</div>
-  </div>
-
-  <div class="featured-grid reveal">
-    <a class="card" href="https://designdigest.vercel.app" target="_blank">
-      <div class="card-day">Day 62 · AI Tool · Standout</div>
-      <div class="card-name lg">Designdigest</div>
-      <div class="card-desc">Live design inspiration feed pulling from 12 RSS sources, processed by Groq, categorised into Inspiration, Tools, Articles, and Jobs. Never shows empty — solves a real daily need.</div>
-      <div class="card-footer"><div class="card-tags"><span class="tag">Groq API</span><span class="tag">RSS</span><span class="tag">Live feed</span></div><div class="card-arrow">→</div></div>
-    </a>
-    <a class="card" href="https://color-analyser.vercel.app" target="_blank">
-      <div class="card-day">Days 14–17 · Design System</div>
-      <div class="card-name">Whyframe</div>
-      <div class="card-desc">A design reasoning engine — not a generator. Four modules: Color Analyzer, Type Scale Builder, Spacing Auditor, Layout Reviewer.</div>
-      <div class="card-footer"><div class="card-tags"><span class="tag">Groq API</span><span class="tag">4 modules</span></div><div class="card-arrow">→</div></div>
-    </a>
-    <a class="card" href="https://motionstudio-five.vercel.app" target="_blank">
-      <div class="card-day">Day 66 · Design Tool</div>
-      <div class="card-name">Motionstudio</div>
-      <div class="card-desc">CSS animation playground. Pick a UI element, dial in effect + easing + duration, watch it live, get AI reasoning on why it works.</div>
-      <div class="card-footer"><div class="card-tags"><span class="tag">CSS keyframes</span><span class="tag">Groq AI</span></div><div class="card-arrow">→</div></div>
-    </a>
-    <a class="card" href="https://foliopath.vercel.app/" target="_blank">
-      <div class="card-day">Days 18–21 · Multi-stage App</div>
-      <div class="card-name">Foliopath</div>
-      <div class="card-desc">Three-stage project lifecycle tool — Brief Generator, Decision Journal with voice-to-text, and Case Study Generator with image uploads.</div>
-      <div class="card-footer"><div class="card-tags"><span class="tag">React + Vite</span><span class="tag">Voice</span><span class="tag">3 stages</span></div><div class="card-arrow">→</div></div>
-    </a>
-    <a class="card" href="https://statboard-lyart.vercel.app" target="_blank">
-      <div class="card-day">Day 67 · Data Viz</div>
-      <div class="card-name">Statboard</div>
-      <div class="card-desc">Metrics dashboard builder with realistic simulated data. Sparkline charts, live ticking numbers, goal progress. Export as HTML.</div>
-      <div class="card-footer"><div class="card-tags"><span class="tag">SVG sparklines</span><span class="tag">Live mode</span></div><div class="card-arrow">→</div></div>
-    </a>
-    <a class="card" href="https://typefeel.vercel.app" target="_blank">
-      <div class="card-day">Day 64 · Design Tool</div>
-      <div class="card-name">Typefeel</div>
-      <div class="card-desc">Interactive typography playground — manipulate font, size, weight, tracking, leading in real time. AI mood breakdown and pairing suggestions.</div>
-      <div class="card-footer"><div class="card-tags"><span class="tag">Groq API</span><span class="tag">16 fonts</span></div><div class="card-arrow">→</div></div>
-    </a>
-    <a class="card wide" href="https://casework.vercel.app" target="_blank">
-      <div class="card-day">Days 23 · DESIGN LEARNING GAME</div>
-      <div class="card-name">Casework</div>
-      <div class="card-desc">Real decisions. Real consequences. A design learning game where players tackle UX scenarios, build design reputation, and learn product thinking through the impact of their choices.</div>
-      <div class="card-footer"><div class="card-tags"><span class="tag">React + Vite</span><span class="tag">40 Scenarios</span><span class="tag">8 Chapters</span><span class="tag">UX Principles</span></div><div class="card-arrow">→</div></div>
-    </a>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- All Projects -->
-<section class="section" id="all">
-  <div class="reveal">
-    <div class="eyebrow">Every ship</div>
-    <div class="section-title">All 65 projects</div>
-  </div>
-
-  <div class="filter-bar reveal">
-    <button class="filter-btn active" onclick="filter('all', this)">All</button>
-    <button class="filter-btn" onclick="filter('tool', this)">AI Tools</button>
-    <button class="filter-btn" onclick="filter('game', this)">Games</button>
-    <button class="filter-btn" onclick="filter('landing', this)">Landing Pages</button>
-    <button class="filter-btn" onclick="filter('design', this)">Design Tools</button>
-    <button class="filter-btn" onclick="filter('multi', this)">Multi-stage</button>
-    <span class="filter-count" id="filter-count">65 projects</span>
-  </div>
-
-  <div class="projects-grid" id="projects-grid">
-    <!-- Populated by JS -->
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- About -->
-<section class="section" id="about">
-  <div class="about-grid reveal">
-    <div class="about-text">
-      <div class="eyebrow">The story</div>
-      <div class="about-quote">I got into design <span>without a degree</span>. I used AI to build, but I kept running into the same problem.</div>
-      <div class="about-body">
-        Clients didn't understand my decisions, and I wasn't always sure I could explain them either. Ship69 was my answer — 69 days of building things that solve real problems, shipped every single day.<br><br>
-        The goal: a portfolio strong enough to land a design engineering role. The rule: miss 3 days and you're out. I didn't miss 3.<br><br>
-        Every project taught me something new — about design, about shipping, about what actually matters when you're building for real people.
-      </div>
-      <div class="about-links">
-        <a href="https://www.linkedin.com/in/neelesh-agrawal-92472b278/" class="about-link" target="_blank">LinkedIn →</a>
-        <a href="https://github.com/Neelesh-Agrawal" class="about-link" target="_blank">GitHub →</a>
-        <a href="https://neelesh-ui-portfolio.vercel.app/" class="about-link" target="_blank">Portfolio →</a>
-      </div>
-    </div>
-    <div class="about-stats">
-      <div class="about-stat">
-        <div class="about-stat-num">65</div>
-        <div class="about-stat-label">Projects shipped</div>
-      </div>
-      <div class="about-stat">
-        <div class="about-stat-num">69</div>
-        <div class="about-stat-label">Days total</div>
-      </div>
-      <div class="about-stat">
-        <div class="about-stat-num">6+</div>
-        <div class="about-stat-label">AI APIs used</div>
-      </div>
-      <div class="about-stat">
-        <div class="about-stat-num">0</div>
-        <div class="about-stat-label">Formal CS degree</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- CTA -->
-<div style="padding: 80px 32px 0;">
-  <div class="cta-section reveal">
-    <div class="cta-grid"></div>
-    <div class="cta-content">
-      <div class="cta-title">69 days. Done. ✓</div>
-      <div class="cta-sub">Self-taught. AI-assisted. No degree.<br>If you're hiring a design engineer, let's talk.</div>
-      <div class="cta-buttons">
-        <a href="mailto:neelesh.agrawal2022@vitstudent.ac.in" class="cta-btn-white">Get in touch</a>
-        <a href="https://github.com/Neelesh-Agrawal" class="cta-btn-outline" target="_blank">View GitHub</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Footer -->
-<footer>
-  <div class="footer-left">built by <a href="https://github.com/Neelesh-Agrawal" target="_blank">Neelesh Agrawal</a> · ship69 challenge · 2025</div>
-  <div class="footer-right">design engineering portfolio</div>
-</footer>
-
+  <div class="end reveal"><div><h2>69 days. Done.</h2><p>Self-taught, AI-assisted, no degree. If you are hiring a design engineer, let's talk.</p></div><div class="btns"><a class="btn" href="mailto:neelesh.agrawal2022@vitstudent.ac.in">Get in touch</a><a class="btn ghost" href="https://neeleshagrawal.vercel.app" target="_blank" rel="noopener">See the portfolio</a></div></div>
+</main>
+<footer><div class="wrap"><span>Built by Neelesh Agrawal · Ship69 · 2026</span><a href="https://neeleshagrawal.vercel.app" target="_blank" rel="noopener">neeleshagrawal.vercel.app</a></div></footer>
+<div class="tip" id="tip" role="tooltip"></div>
 <script>
-// ── Project data (matched from tracker + Vercel) ──────────────────────────────
 const projects = [
   { day:1,  name:'Ship69 Hub',              type:'multi',   desc:'Shell of the hub site — nav, grid layout, empty project cards.',                                            url:'https://ship69-hub.vercel.app/' },
   { day:2,  name:'Vibe Check Color Tool',   type:'tool',    desc:'Type a mood → AI generates a 6-color palette with mood description, season, and energy level.',             url:'https://vibe-palette-three.vercel.app/' },
@@ -613,7 +169,7 @@ const projects = [
   { day:4,  name:'Type or Die',             type:'game',    desc:'Terminal-style typing arcade. Words fall from the top — type them before they hit the bottom.',              url:'https://type-or-die-arcade.vercel.app' },
   { day:5,  name:'Dodge the Meetings',      type:'game',    desc:'Developer dodge game. Avoid falling calendar invites, Slack pings, and Jira tickets.',                       url:'https://dodge-the-meetings.vercel.app' },
   { day:6,  name:'Fake SaaS Generator',     type:'tool',    desc:'Type any ridiculous idea → AI generates a deadpan professional SaaS landing page you can download.',        url:'https://fake-saas-generator.vercel.app/' },
-  { day:7,  name:'Dodge Wave',              type:'game',    desc:'Mobile dodge game. Drag to avoid waves of enemy projectiles falling in patterns.',                           url:'https://dodge-wave.vercel.app/' },
+  { day:7,  name:'Dodge Me',                type:'game',    desc:'3D space-tunnel flight race against seven pilots. Steer through bends, dodge beams and rocks, collect rings and use nitro.', url:'https://dodge-wave.vercel.app/' },
   { day:8,  name:'AskAnything',             type:'tool',    desc:'AI-powered answer engine for real life problems. Type any problem → structured actionable advice.',          url:'https://ask-anything-now.vercel.app/' },
   { day:9,  name:'Layer Audit',             type:'tool',    desc:'Figma plugin that scans layers for bad naming — default names, deep nesting — with issue + fix + severity.', url:'#' },
   { day:10, name:'Cinematic 404 Page',      type:'design',  desc:'Animated 404. Astronaut floats outside spacecraft, wire snaps, drifts into darkness.',                      url:'https://404-green-six.vercel.app/' },
@@ -644,80 +200,79 @@ const projects = [
   { day:43, name:'Typeduel',             type:'game',    desc:'Typing speed test with design / philosophy / stoic quote modes. Shows WPM, accuracy, errors, grade.',         url:'https://typeduel-typing-test.vercel.app/' },
   { day:44, name:'Briefcard',            type:'design',  desc:'Build brief generator. 4 fields → product name, palette, font pairing, build checklist, Ship69 description.', url:'https://briefcard.vercel.app/' },
   { day:45, name:'Heatmap',              type:'design',  desc:'Fake analytics dashboard with live visitor counter, event feed, trend charts, top pages, countries, devices.', url:'https://heatmap-azure.vercel.app/' },
-  { day:46, name:'Designgrill',          type:'tool',    desc:'AI design interview simulator. 4 modes, 3 levels, 60 questions. Honest feedback + end scorecard.',            url:'https://designgrill.vercel.app/' },
+  { day:46, name:'Designgrill',          type:'tool',    desc:'Mock design interview: 4 types, 3 levels, five questions per round. Feedback and scores on every answer, then a hiring verdict. Rebuilt Oct 2026.',            url:'https://designgrill.vercel.app/' },
   { day:47, name:'Sero',                 type:'landing', desc:'Sleep tracking app landing. Deep navy + amber. Phone mockup with sleep score and heart rate chart.',           url:'https://sero-sleep-app.vercel.app/' },
-  { day:48, name:'Colordump',            type:'design',  desc:'Paste any hex → full token system. 10-stop shade scale, 8 semantic tokens, CSS/Tailwind/Figma/SCSS export.',  url:'https://colordump.vercel.app/' },
+  { day:48, name:'Colordump',            type:'design',  desc:'One colour in: OKLCH 50–950 scale, contrast on every shade, light and dark tokens, exports for CSS, Tailwind, SCSS and Figma. Rebuilt Oct 2026.',  url:'https://colordump.vercel.app/' },
   { day:50, name:'Folio',               type:'tool',    desc:'Portfolio presentation tool. Add projects, present full-screen with keyboard nav, progress bar, dot navigation.', url:'https://folio-portfolio-presenter.vercel.app' },
-  { day:51, name:'Mockframe',           type:'design',  desc:'Browser/phone mockup generator. Custom title, description, URL. Copy HTML output.',                            url:'https://mockframe-beta.vercel.app' },
+  { day:51, name:'Mockframe',           type:'design',  desc:'Drop or paste a real screenshot, frame it in a browser or phone, pick a background, export a crisp 2× PNG. Rebuilt Oct 2026.',                            url:'https://mockframe-beta.vercel.app' },
   { day:54, name:'Vibespec',            type:'tool',    desc:'Describe a feeling, film, place → full design direction: palette, typefaces, spacing mood, creative brief.',   url:'https://vibespec-tan.vercel.app' },
   { day:55, name:'Specwriter',          type:'tool',    desc:'Describe a UI component → full handoff spec: typography, spacing, colour, interaction states, accessibility.', url:'https://specwriter-delta.vercel.app/' },
-  { day:56, name:'Microcopy',           type:'tool',    desc:'Describe a UI moment → 3 variations of headline, subtext, and CTA across 10 moment types and 3 tones.',       url:'https://microcopy-opal.vercel.app/' },
-  { day:57, name:'Jobfit',              type:'tool',    desc:'Fit Check (score 0–100 on applying) + CV Match (rewrite bullets to match JD language, surface keywords).',     url:'https://jobfit-khaki.vercel.app/' },
-  { day:58, name:'Casebrief',           type:'tool',    desc:'6 fields → one-liner, case study paragraph, LinkedIn post. Four audience modes.',                               url:'https://casebrief-five.vercel.app/' },
-  { day:59, name:'Lintui',              type:'tool',    desc:'Design system auditor — paste tokens, components, naming → prioritised issue list. Five audit types.',         url:'https://lintui.vercel.app' },
+  { day:56, name:'Microcopy',           type:'tool',    desc:'Three directions for headline, supporting line and button, previewed inside the real UI pattern with word limits. Rebuilt Oct 2026.',       url:'https://microcopy-opal.vercel.app/' },
+  { day:57, name:'Jobfit',              type:'tool',    desc:'Fit check with an apply / stretch / skip call, then CV bullets rewritten in the job’s language. Saves your profile. Rebuilt Oct 2026.',     url:'https://jobfit-khaki.vercel.app/' },
+  { day:58, name:'Casebrief',           type:'tool',    desc:'Six fields in, a one-liner, a case study and a LinkedIn post out, editable and tuned to your audience. Rebuilt Oct 2026.',                               url:'https://casebrief-five.vercel.app/' },
+  { day:59, name:'Lintui',              type:'tool',    desc:'Lint your tokens like code: duplicates, scale gaps, contrast and naming drift, with a visual map of your system. Rebuilt Oct 2026.',         url:'https://lintui.vercel.app' },
   { day:60, name:'Skindrop',            type:'landing', desc:'Premium skincare landing. Split hero, scrolling marquee, 3-product grid, 4-step ritual, ingredients breakdown.',url:'https://skindrop-xi.vercel.app/' },
   { day:61, name:'Solepeak',            type:'landing', desc:'Premium sneaker landing with Unsplash images. Bold streetwear, yellow marquee, interactive size selector.',    url:'https://solepeak.vercel.app' },
-  { day:62, name:'Designdigest',        type:'tool',    desc:'Live design inspiration feed from 12 RSS sources, processed by Groq. Never shows empty — standout ship.',      url:'https://designdigest.vercel.app/' },
+  { day:62, name:'Designdigest',        type:'design',    desc:'A dated design magazine of the day’s best reading from 10+ sources, with images, search and save for later. Rebuilt Oct 2026.',      url:'https://designdigest.vercel.app/' },
   { day:63, name:'Bored Button v2',     type:'design',  desc:'Refined one-button random activity generator.',                                                                 url:'https://bored-button-spark.vercel.app/' },
-  { day:64, name:'Typefeel',            type:'tool',    desc:'Typography playground — pick font, manipulate all properties in real time, AI mood breakdown.',                url:'https://typefeel.vercel.app' },
+  { day:64, name:'Typefeel',            type:'tool',    desc:'Typography playground: 16 typefaces, headline / specimen / waterfall views, AI mood read and live pairing preview. Rebuilt Oct 2026.',                url:'https://typefeel.vercel.app' },
   { day:65, name:'Codewatch',           type:'landing', desc:'Bold B2B landing for fake AI code review SaaS. Live code mockup, inline issue detection, 3-tier pricing.',    url:'https://codewatch-beta.vercel.app/' },
   { day:66, name:'Motionstudio',        type:'tool',    desc:'CSS animation playground. Pick element, effect, easing, duration — live preview + AI reasoning. Copy CSS.',   url:'https://motionstudio-five.vercel.app/' },
   { day:67, name:'Statboard',           type:'tool',    desc:'Metrics dashboard builder with realistic sparklines, live ticking numbers, goal progress. Export HTML.',       url:'https://statboard-lyart.vercel.app' },
   { day:68, name:'Ship69 Wrapped',      type:'design',  desc:'Stats page celebrating the full 69-day run. Counts, type breakdown, timeline, standout projects, share card.', url:'https://ship69-hub.vercel.app/' },
 ];
+const TYPES = { tool: 'AI tool', design: 'Design tool', game: 'Game', landing: 'Landing page', multi: 'Multi-stage' };
+// standouts; rebuilt = redesigned in Oct 2026
+const FEATURED = [
+  { day: 62, rebuilt: true, wide: true, line: 'A dated design magazine of the day’s best reading from Smashing, UX Collective, Nielsen Norman, Awwwards and more. Search it, save stories for later.' },
+  { day: 48, rebuilt: true, line: 'One colour in, a full OKLCH scale with contrast checks, light and dark tokens, and exports for CSS, Tailwind and Figma.' },
+  { day: 64, rebuilt: true, line: 'Set your own words in 16 typefaces, see them as a headline, specimen or waterfall, and get a read on mood and pairings.' },
+  { day: 46, rebuilt: true, line: 'A mock design interview: five real questions, feedback and scores on every answer, and a hiring verdict at the end.' },
+  { day: 56, rebuilt: true, line: 'Three directions for headline, supporting line and button, previewed inside the real UI pattern with word limits.' },
+  { day: 66, rebuilt: true, line: 'Pick an element and effect, dial in easing on a live curve, watch it run, copy the CSS, get reasoning on why it works.' },
+  { day: 57, rebuilt: true, line: 'An honest fit score before you apply, then CV bullets rewritten in the job’s own language with missing keywords.' },
+  { day: 59, rebuilt: true, line: 'Lint your tokens like code: duplicates, scale gaps, contrast and naming drift, with a visual map of your system.' },
+  { day: 23, full: true, line: 'Real decisions, real consequences. A design learning game with 40 UX scenarios across 8 chapters, built to teach product thinking.' },
+];
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const live = p => p.url && p.url !== '#';
+const byDay = {}; projects.forEach(p => byDay[p.day] = byDay[p.day] || p);
+const shipped = projects.filter(live);
 
-// Type labels
-const typeLabel = { tool:'AI Tool', game:'Game', landing:'Landing Page', design:'Design Tool', multi:'Multi-stage', plugin:'Plugin' };
+// calendar of the 69 days
+$('#days').innerHTML = Array.from({ length: 69 }, (_, i) => {
+  const d = i + 1, p = byDay[d];
+  if (!p) return `<span class="day off" aria-label="Day ${d}: no ship"></span>`;
+  return `<a class="day on" ${live(p) ? `href="${esc(p.url)}" target="_blank" rel="noopener"` : ''} style="--c:var(--${p.type})" data-d="${d}" aria-label="Day ${d}: ${esc(p.name)}">${d}</a>`;
+}).join('');
+$('#cal-n').textContent = `${Object.keys(byDay).length} of 69 days`;
+$('#legend').innerHTML = Object.entries(TYPES).map(([k, l]) => `<span style="--c:var(--${k})"><i></i>${l}</span>`).join('') + '<span><i style="background:repeating-linear-gradient(45deg,var(--line),var(--line) 2px,transparent 2px,transparent 4px)"></i>Small day</span>';
+const tip = $('#tip');
+$('#days').addEventListener('pointerover', e => { const a = e.target.closest('.day.on'); if (!a) return; const p = byDay[a.dataset.d]; tip.innerHTML = `<small>Day ${p.day} · ${TYPES[p.type]}</small>${esc(p.name)}`; tip.style.opacity = 1; });
+$('#days').addEventListener('pointermove', e => { tip.style.left = Math.min(e.clientX + 14, innerWidth - 250) + 'px'; tip.style.top = e.clientY + 14 + 'px'; });
+$('#days').addEventListener('pointerout', () => tip.style.opacity = 0);
 
-// Render grid
-function renderGrid(filtered) {
-  const grid = document.getElementById('projects-grid');
-  const count = document.getElementById('filter-count');
+const cnt = t => shipped.filter(p => p.type === t).length;
+$('#stats').innerHTML = [[shipped.length, 'Live ships'], [cnt('tool'), 'AI tools'], [cnt('design') + cnt('multi'), 'Design tools'], [cnt('game'), 'Games'], [cnt('landing'), 'Landing pages']].map(([n, l]) => `<div><b>${n}</b><span>${l}</span></div>`).join('');
+$('#n-live').textContent = shipped.length;
 
-  grid.innerHTML = filtered.map(p => {
-    const typeColor = {
-      tool: 'background:var(--accent-dim);color:var(--accent)',
-      game: 'background:var(--pink-dim);color:var(--pink)',
-      landing: 'background:var(--green-dim);color:var(--green)',
-      design: 'background:var(--amber-dim);color:var(--amber)',
-      multi: 'background:var(--purple-dim);color:var(--purple)',
-      plugin: 'background:#f0fdf4;color:#166534'
-    }[p.type] || '';
+$('#feat').innerHTML = FEATURED.map(f => { const p = byDay[f.day]; return p ? `<a class="fc reveal ${f.wide ? 'wide' : ''} ${f.full ? 'full' : ''}" href="${esc(p.url)}" target="_blank" rel="noopener" style="--c:var(--${p.type})"><div class="top"><span class="badge">Day ${p.day} · ${TYPES[p.type]}</span>${f.rebuilt ? '<span class="new">Rebuilt Oct 2026</span>' : ''}</div><h3>${esc(p.name)}</h3><p>${esc(f.line)}</p><div class="go">Open it <span>${esc(p.url.replace(/^https:\/\/|\/$/g, ''))} ↗</span></div></a>` : ''; }).join('');
 
-    const isLink = p.url && p.url !== '#';
-
-    return `<a class="project-card type-${p.type}" ${isLink ? `href="${p.url}" target="_blank"` : ''} style="${!isLink ? 'cursor:default;opacity:0.6' : ''}">
-      <div class="pc-header">
-        <div class="pc-day" style="${typeColor}">Day ${p.day}</div>
-        ${isLink ? '<span style="font-size:11px;color:var(--accent)">→</span>' : ''}
-      </div>
-      <div class="pc-name">${p.name}</div>
-      <div class="pc-desc">${p.desc}</div>
-      <div class="pc-type">${typeLabel[p.type] || p.type}</div>
-    </a>`;
-  }).join('');
-
-  count.textContent = `${filtered.length} project${filtered.length !== 1 ? 's' : ''}`;
+let type = 'all', q = '';
+$('#filters').innerHTML = [['all', 'All'], ...Object.entries(TYPES)].map(([k, l]) => `<button data-t="${k}" aria-pressed="${k === type}" style="--c:var(--${k})">${k === 'all' ? '' : '<i></i>'}${l}</button>`).join('');
+function render() {
+  const t = q.toLowerCase();
+  const list = projects.filter(p => (type === 'all' || p.type === type) && (!t || (p.name + ' ' + p.desc).toLowerCase().includes(t)));
+  $('#count').textContent = `${list.length} project${list.length === 1 ? '' : 's'}`;
+  $('#grid').innerHTML = list.map(p => { const L = live(p); return `<${L ? `a href="${esc(p.url)}" target="_blank" rel="noopener"` : 'div'} class="pc ${L ? '' : 'dead'}" style="--c:var(--${p.type})"><div class="n"><small>DAY</small>${String(p.day).padStart(2, '0')}</div><h4>${esc(p.name)}<span>${L ? '↗' : 'offline'}</span></h4><p>${esc(p.desc)}</p><div class="t">${TYPES[p.type] || p.type}</div></${L ? 'a' : 'div'}>`; }).join('') || '<p class="count">Nothing matches that search.</p>';
 }
+$('#filters').onclick = e => { const b = e.target.closest('button'); if (!b) return; type = b.dataset.t; $('#filters').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); render(); };
+$('#q').oninput = e => { q = e.target.value.trim(); render(); };
+render();
 
-// Filter
-function filter(type, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const filtered = type === 'all' ? projects : projects.filter(p => p.type === type);
-  renderGrid(filtered);
-}
-
-// Intersection observer
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Init
-renderGrid(projects);
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
-
 </body>
 </html>
